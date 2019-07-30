@@ -8,12 +8,12 @@ import Interpreter
 import Parser
 import Tape
 
-program = "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++>+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++> ++++++++++> <<<[.>.>>[>+<<<<.>>>><-]>[-<+>]<+<<<..-.+>>-.+<<]"
+emptyTape = Tape [0,0..] 0 [0,0..]
 
 main :: IO ((), BFTape)
 main = getSourceFile >>=
           readFile >>=
-            \p -> runStateT (interpret (parse p)) (Tape [0..] 0 [0..])
+            \p -> runStateT (interpret (parse p)) emptyTape
 
 mayHead :: [a] -> Maybe a
 mayHead []      = Nothing
